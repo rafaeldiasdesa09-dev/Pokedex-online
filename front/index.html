@@ -6,6 +6,18 @@
   <title>Treinadores Pokémon · UC33</title>
   <link rel="stylesheet" href="estilo.css">
 </head>
+
+const express = require('express');
+const path = require('path');
+const app = express();
+
+// Libera todos os arquivos da pasta "public" automaticamente
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.listen(3000, () => {
+  console.log('Servidor rodando na porta 3000');
+});
+
 <body>
 
   <div class="background">

@@ -217,3 +217,36 @@ $('adicionar').addEventListener('submit', adicionar);
 $('ver-pokemon').addEventListener('click', verPokemon);
 
 carregarLista();
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Olá, Mundo!');
+});
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+
+import express from 'express';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Arquivos estáticos
+app.use(express.static(__dirname));
+
+// Rota principal
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+export { app };
